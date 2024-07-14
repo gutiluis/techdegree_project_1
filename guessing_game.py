@@ -16,45 +16,32 @@ import random
 import time
 
 
-
 def start_game():
-    print("###### Welcome message ######")
-    time.sleep(1)
-    guesses = 1
-    random_number = random.randint(1,10)
-    
-
-    secret_number = int(input("Guess a number between 0 and 10: "))
-    while random_number != secret_number:
-        
-        secret_number = int(input("Guess a number between 0 and 10: "))
-        #print("{}".format(secret_number))
-        if secret_number < 10:
-            guesses = guesses + 1
-            time.sleep(.5)
-            print("It's Higher")
-        elif secret_number > 0:
-            guesses = guesses + 1
-            time.sleep(.5)
-            print("It's Lower")
-    random_number == secret_number
-    print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)
-    print("Game Over")    
-    continue_game = input("Continue game?  yes/no   ")
-    while continue_game == ("yes"):
-        #restart the game.how to?
-	try:        
+	print("###### Welcome message ######")
+	time.sleep(1)
+	guesses = 1
+	random_number = random.randint(1,10)
+	secret_number = int(input("Guess a number between 0 and 10: "))
+	while random_number != secret_number:
 		secret_number = int(input("Guess a number between 0 and 10: "))
-        	guesses = guesses + 1
-        	print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)
-        	print("Game Over")
-	except ValueError:
-	if continue_game == input("no")    
-random_number == secret_number
-    print("Congratulations it took you",str(guesses), "attempts")
-    print("Game Over")     
-
-
+	#print("{}".format(secret_number))
+		if secret_number < 10:
+			print("Its Higher")
+			time.sleep(5)
+			guesses = guesses + 1
+		elif secret_number > 0:
+			print("It's Lower")
+			time.sleep(.5)
+			guesses = guesses + 1
+	random_number == secret_number
+	print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)
+	continue_game = (input("Play again?"))
+	continue_game = "yes"
+	while continue_game == ("yes"):
+		start_game()
+	continue_game = ("no")
+	print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)  
+	print("Game Over")
 
 start_game()
 
