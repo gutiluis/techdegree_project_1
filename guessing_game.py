@@ -14,17 +14,22 @@ Project 1 - The Number Guessing Game
 ######
 import random
 import time
+import sys
+
 
 
 def start_game():
-	print("###### Welcome message ######")
+	print("############################################################")
+	print("          ######################### Welcome Player! ##############################")
+	print("############################################################")
+	print("          ########################################################################")
 	time.sleep(1)
+	random_number = random.randint(1, 10)
 	guesses = 1
-	random_number = random.randint(1,10)
-	secret_number = int(input("Guess a number between 0 and 10: "))
+	secret_number = input("Guess a number between 1 and 10: ")
+	#enter error for not integer
+	#error for numbers out of range text. exception handling for numbers out of range	
 	while random_number != secret_number:
-		secret_number = int(input("Guess a number between 0 and 10: "))
-	#print("{}".format(secret_number))
 		if secret_number < 10:
 			print("Its Higher")
 			time.sleep(5)
@@ -32,19 +37,33 @@ def start_game():
 		elif secret_number > 0:
 			print("It's Lower")
 			time.sleep(.5)
-			guesses = guesses + 1
-	random_number == secret_number
+			guesses = guesses + 1			
+	random_number = secret_number
 	print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)
 	continue_game = (input("Play again?"))
-	continue_game = "yes"
-	while continue_game == ("yes"):
+	continue_game = "yes", "Yes"
+	while continue_game == ("yes", "Yes"):
 		start_game()
-	continue_game = ("no")
+	continue_game = ("no", "No")
 	print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)  
 	print("Game Over")
-
+	
+	#####
+	def out_range(int):
+		try:
+			if secret_number > 10:
+				raise ValueError("not valid")
+			if secret_number < 0:
+				raise ValueError("not valid")
+		except ValueError:
+			print("not valid")
+	
 start_game()
+sys.exit("end of game")
 
+#handle error and exceptions. how to
+#raising exceptions is for the out of range
+#
 
 
 # Import the random module.
