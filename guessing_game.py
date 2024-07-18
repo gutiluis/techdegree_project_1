@@ -44,10 +44,11 @@ def start_game():
 	random_number = random.randint(1, 10)
 	global guesses
 	guesses = 1
+	global secret_number
 	#secret_number = input("Guess a number between 1 and 10: ")
 	#enter error for not integer
 	#error for numbers out of range text. exception handling for numbers out of range	
-	
+
 
 def only_integer():
 	while True:
@@ -60,7 +61,7 @@ def only_integer():
 			break
 	
 
-def out_of_range(secret_number):
+def out_of_range():
 	while True:
 		try:
 			if secret_number <= 0:
@@ -70,7 +71,7 @@ def out_of_range(secret_number):
 		except ValueError:
 			print("number out of range")
 			break
-	
+
 
 def attempt():
 	while True:
