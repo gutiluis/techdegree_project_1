@@ -5,17 +5,33 @@ Project 1 - The Number Guessing Game
 """
 
 #input and output:
-
 #conditional branching:
+#if#elif#else
+
 #loops:
+###while
+###for
 #exception handling:
-#import libraries:
+#try:
+#	named_variable = input
+#except ValueError:
+#	print("not available")
+#try:
+#	named_variable = input
+#except ValueError as err:
+#	print(err)
+
 
 ######
-import random
-import time
-import sys
+import random, time, sys
 
+
+def main():
+	start_game()
+	only_integer()
+	out_of_range()
+	attempt()
+	continue_game()
 
 
 def start_game():
@@ -24,42 +40,70 @@ def start_game():
 	print("############################################################")
 	print("          ########################################################################")
 	time.sleep(1)
+	global random_number
 	random_number = random.randint(1, 10)
+	global guesses
 	guesses = 1
-	secret_number = input("Guess a number between 1 and 10: ")
+	#secret_number = input("Guess a number between 1 and 10: ")
 	#enter error for not integer
 	#error for numbers out of range text. exception handling for numbers out of range	
-	while random_number != secret_number:
+	
+
+def only_integer():
+	while True:
+		try:
+			secret_number = int(input("Enter an integer between 1 and 10:    "))
+		except ValueError as e:
+			print(e)
+		else:
+			print("Your secret number is {}")
+			break
+	
+
+def out_of_range(secret_number):
+	while True:
+		try:
+			if secret_number <= 0:
+				raise ValueError
+			if secret_number > 10:
+				raise ValueError
+		except ValueError:
+			print("number out of range")
+			break
+	
+
+def attempt():
+	while True:
 		if secret_number < 10:
 			print("Its Higher")
-			time.sleep(5)
-			guesses = guesses + 1
+			time.sleep(5)	
+			guesses += 1
 		elif secret_number > 0:
 			print("It's Lower")
 			time.sleep(.5)
-			guesses = guesses + 1			
-	random_number = secret_number
-	print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)
-	continue_game = (input("Play again?"))
-	continue_game = "yes", "Yes"
+			guesses += 1			
+		else: random_number = secret_number
+		guesses += 1
+		print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)
+		break
+	
+
+def	continue_game():
+	continue_game = input("Play again?")
+	#continue_game = "yes", "Yes"
 	while continue_game == ("yes", "Yes"):
 		start_game()
 	continue_game = ("no", "No")
 	print("Congratulations it took you",str(guesses), "attempts. The secret number is" ,(secret_number),)  
 	print("Game Over")
+	sys.exit()
 	
 	#####
-	def out_range(int):
-		try:
-			if secret_number > 10:
-				raise ValueError("not valid")
-			if secret_number < 0:
-				raise ValueError("not valid")
-		except ValueError:
-			print("not valid")
-	
-start_game()
-sys.exit("end of game")
+#	start_game()	
+#	sys.exit()
+
+main()
+
 
 #handle error and exceptions. how to
 #raising exceptions is for the out of range
