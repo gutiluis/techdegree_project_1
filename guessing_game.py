@@ -22,30 +22,31 @@ def start_game():
 	secret_number = True
 	while secret_number != random_number:
 		try:
-			secret_number = int(input("Please enter a number between 1 and 10:    "))
+			secret_number = int(input("Please guess a number between 1 and 10:    "))
 			if secret_number < random_number:
-				print("It's higher")
+				print("It's higher. Try again...")
 				guesses += 1
 			if secret_number > random_number:
-				print("It's lower")
+				print("It's lower. Try again...")
 				guesses += 1
-		except ValueError:
-			print("not valid")
+		except ValueError as err:
+			print("Value entered not valid. Try again with integers only from 1 through 10.")
+			print("({})".format(err))
 	secret_number = random_number
 	guesses += 1
-	print("Congratulations it took you",str(guesses),"attempts. The secret number is",(secret_number),)
+	print("Congratulations it took you",str(guesses),"attempts. The random number is",(secret_number),)
 start_game()
 
 def continue_game():
-	continue_game = input("Play again?  ")
-	while continue_game.lower() == "y":
+	continue_game = input("Try again?")
+	if continue_game == ("Yes", "y", "yes"):
 		start_game()
-	else:
-		continue_game.lower() == ("no", "n")
-		print("Game Over")
+	else: 
+		continue_game == ("no", "n")
+		print("Game Over.")
 		sys.exit()
 continue_game()
-#		sys.exit()
+
 
 main()
 
